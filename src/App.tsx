@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import {
   DynamicContextProvider
 } from "@dynamic-labs/sdk-react-core";
@@ -6,6 +7,17 @@ import RouteFile from "./routes";
 import InstallPWA from "./install";
 
 function App() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  const isMobile = windowWidth < 768;
 
   return (
     <DynamicContextProvider
@@ -14,10 +26,16 @@ function App() {
         walletConnectors: [SolanaWalletConnectors],
       }}
     >
-      <main className="quicksand md:flex lg:hidden">
-        <RouteFile />
-        <InstallPWA />
-      </main>
+      {isMobile ? (
+        <main className="quicksand">
+          <RouteFile />
+          <InstallPWA />
+        </main>
+      ) : (
+        <div className="quicksand w-screen h-screen text-black font-bold text-3xl center">
+          Nomad is only available on mobile devices.
+        </div>
+      )}
     </DynamicContextProvider>
   );
 }
