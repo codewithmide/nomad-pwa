@@ -34,22 +34,22 @@ const Send = () => {
       <div className="w-full between border-b pb-3 border-gray-700">
         <Link to="/" className="center gap-2">
             <IoIosArrowBack color="#fff" size={15}/>
-            <p className='text-sm'>Back</p>
+            <p className='text-sm font-light'>Back</p>
         </Link>
-        <div className="capitalize text-sm text-center">Send Money</div>
+        <div className="capitalize font-light text-sm text-center">Send Money</div>
       </div>
 
       <div className="w-full h-full pb-6 center flex-col between gap-[5rem]">
         <div></div>
-        <p className="text-4xl font-bold"><span className="text-[18px] font-normal">$</span>{displayAmount}</p>
-        <Link to="/send" className='w-full center gap-2 text-center bg-white text-black p-5 rounded-[30px] font-semibold'>
+        <p className="text-4xl font-bold"><span className="text-3xl font-bold">$</span>{displayAmount}</p>
+        <Link to="/send" className='w-full center gap-2 text-center bg-white text-black p-5 rounded- font-medium'>
           <p className="text-2xl">Send</p>
           <IoIosSend size={20} />
         </Link>
       </div>
 
       {/* Numbered keyboard here */}
-      <div className="grid grid-cols-3 gap-2 bg-white text-black font-bold w-full rounded-t-2xl p-4 text-2xl">
+      <div className="grid grid-cols-3 gap-2  text-white font-medium w-full rounded-t-sm p-4 text-3xl">
         {[...Array(9).keys()].map(n =>
           <button key={n+1} onClick={() => handleNumberClick((n+1).toString())} className=" p-5 rounded-md">
             {n + 1}

@@ -11,16 +11,16 @@ const Receive = () => {
       <div className="w-full between border-b pb-3 border-gray-700">
         <Link to="/" className="center gap-2">
           <IoIosArrowBack color="#fff" size={15} />
-          <p className="text-sm">Back</p>
+          <p className="text-sm font-light">Back</p>
         </Link>
-        <div className="capitalize text-sm text-center">Receive Money</div>
+        <div className="capitalize text-sm font-light text-center">Receive Money</div>
       </div>
 
       <div className="center flex-col gap-4 w-10/12">
-        <h2 className="font-semibold text-3xl text-center">
+        <h2 className="font-medium text-3xl text-center">
           Receive money into your Nomad wallet
         </h2>
-        <p className="text-sm text-center">
+        <p className="text-sm font-regular text-center">
           Scan this QR code or copy your wallet address below to receive money
         </p>
       </div>
@@ -29,14 +29,14 @@ const Receive = () => {
         qr code here
       </div>
 
-      <div className="bg-white text-black w-11/12 text-wrap rounded-lg">
+      <div className="bg-white text-black w-11/12 text-wrap rounded-sm">
         <div className="between p-3 gap-3 rounded-sm">
           <div
             id="ref"
             className="overflow-hidden text-[.7rem] text-ellipsis whitespace-nowrap"
           >
             {userWallets.map((wallet) => (
-              <p key={wallet.id}>
+              <p className="font-regular" key={wallet.id}>
                 {wallet.address}
               </p>
             ))}

@@ -9,16 +9,62 @@ body {
   overflow-x: hidden;
 }
 
+@font-face {
+  font-family: 'Black';
+  src: local('Satoshi-Black'),
+  url(./assets/fonts/Satoshi-Black.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Bold';
+  src: local('Satoshi-Bold'),
+  url(./assets/fonts/Satoshi-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Regular';
+  src: local('Satoshi-Regular'),
+  url(./assets/fonts/Satoshi-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Regular';
+  src: local('Satoshi-Regular'),
+  url(./assets/fonts/Satoshi-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Medium';
+  src: local('Satoshi-Medium'),
+  url(./assets/fonts/Satoshi-Medium.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Light';
+  src: local('Satoshi-Light'),
+  url(./assets/fonts/Satoshi-Light.ttf) format('truetype');
+}
+
 .center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.custom-button {
+  border-radius: 0;
+}
+
 .between {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.dynamic-shadow-dom {
+  --dynamic-connect-button-background: #0A493A;
+  --dynamic-connect-button-color: #0A493A;
+  --dynamic-connect-button-radius: 0px;
 }
 
 .quicksand {

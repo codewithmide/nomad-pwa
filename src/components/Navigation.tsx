@@ -6,6 +6,7 @@ import { RiHome2Line } from "react-icons/ri";
 import { LuWallet2 } from "react-icons/lu";
 import { FiSend } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa";
+import { CiCreditCard2 } from "react-icons/ci";
 import Transactions from "../pages/Transactions";
 
 function Navigation() {
@@ -27,7 +28,7 @@ function Navigation() {
   };
 
   return (
-    <div className='h-screen w-screen overflow-hidden bg-black text-white'>
+    <div className='h-screen w-screen font-regular overflow-hidden bg-black text-white'>
       {Screens[currentScreen]}
       <div className='w-screen fixed left-0 z-50 bottom-0'>
         <div className='flex items-center justify-around bg-white p-1'>
@@ -36,8 +37,8 @@ function Navigation() {
             <p>Home</p>
           </div>
           <div onClick={() => setCurrentScreen(1)} className={getTabClass(1)}>
-            <LuWallet2 size={20} color={getIconColor(1)} />
-            <p>Wallet</p>
+            <CiCreditCard2 size={23} color={getIconColor(1)} />
+            <p>Card</p>
           </div>
           <div onClick={() => setCurrentScreen(2)} className={getTabClass(2)}>
             <FiSend size={20} color={getIconColor(2)} />

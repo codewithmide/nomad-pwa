@@ -26,7 +26,7 @@ export default function Profile() {
 
   return (
     <main className="min-h-screen w-screen flex-col flex bg-black p-5 text-white ">
-      <div className="w-full capitalize text-center border-b pb-3 border-gray-700">My profile</div>
+      <div className="w-full capitalize font-regular text-center border-b pb-3 border-gray-700">My profile</div>
       <div className='flex-col flex center w-full my-14'>
         {user?.ens?.avatar ? (
           <img
