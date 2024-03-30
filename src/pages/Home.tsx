@@ -15,16 +15,16 @@ export default function Home() {
 
   // const connector = primaryWallet?.connector;
 
-  const signMessage = async (primaryWallet: any) => {
-    if (!primaryWallet) return null;
-    else {
-      console.log(primaryWallet.address);
-    }
+  // const signMessage = async (primaryWallet: any) => {
+  //   if (!primaryWallet) return null;
+  //   else {
+  //     console.log(primaryWallet.address);
+  //   }
 
-    const signer = await primaryWallet.connector.getSigner();
+  //   const signer = await primaryWallet.connector.getSigner();
 
-    return signer ? await signer.signMessage("example") : null;
-  };
+  //   return signer ? await signer.signMessage("example") : null;
+  // };
 
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function Home() {
 
       {/* <button className='mt-[3rem] bg-white text-black p-3 rounded-lg font-semibold' onClick={() => signMessage(primaryWallet)}>Sign Message</button> */}
       <div className="w-full gap-6 between mt-[1rem]">
-        <Link to="/send" className='w-full center gap-2 text-center bg-white text-black p-3 font-medium'>
+        <Link to="/send" className='w-full center gap-2 text-center bg-[#06FFC3] text-black p-3 font-medium'>
           <p>Send</p>
           {/* <IoIosSend size={20} /> */}
         </Link>

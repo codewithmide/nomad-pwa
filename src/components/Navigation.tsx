@@ -3,7 +3,6 @@ import Home from '../pages/Home';
 import WalletPage from '../pages/Wallet';
 import Profile from '../pages/Profile';
 import { RiHome2Line } from "react-icons/ri";
-import { LuWallet2 } from "react-icons/lu";
 import { FiSend } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa";
 import { CiCreditCard2 } from "react-icons/ci";
