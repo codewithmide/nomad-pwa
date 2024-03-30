@@ -25,7 +25,7 @@ export default defineConfig({
           src:'./pwaIcons/android-chrome-512x512.png',
           sizes:'512x512',
           type:'image/png',
-          purpose:'favicon'
+          purpose:'any'
         },
         {
           src: './pwaIcons/apple-touch-icon.png',
@@ -37,14 +37,8 @@ export default defineConfig({
           src: './pwaIcons/maskable_icon.png',
           sizes:'512x512',
           type:'image/png',
-          purpose:'any maskable',
+          purpose:'maskable',
         },
-        {
-          src: './pwaIcons/maskable_icon.png',
-          sizes:'512x512',
-          type:'image/png',
-          purpose:'any maskable',
-        }
       ],
       theme_color: '#ffffff',
     },
