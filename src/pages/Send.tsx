@@ -30,7 +30,7 @@ const Send = () => {
   console.log(displayAmount);
 
   return (
-    <div className="bg-black flex-col between text-white h-screen w-screen between px-3 py-5">
+    <div className="bg-black flex-col pb-[4rem] between text-white h-screen w-screen between px-3 py-5">
       <div className="w-full between border-b pb-3 border-gray-700">
         <Link to="/" className="center gap-2">
             <IoIosArrowBack color="#fff" size={15}/>
@@ -39,7 +39,7 @@ const Send = () => {
         <div className="capitalize font-light text-sm text-center">Send Money</div>
       </div>
 
-      <div className="w-full h-full pb-6 center flex-col between gap-[5rem]">
+      <div className="w-full h-full pb-6 center flex-col between">
         <div></div>
         <p className="text-4xl font-bold"><span className="text-3xl font-bold">$</span>{displayAmount}</p>
         <Link to="/send" className='w-full center gap-2 text-center bg-white text-black p-5 rounded- font-medium'>

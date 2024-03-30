@@ -1,7 +1,9 @@
 import { useDynamicContext, useUserWallets } from '@dynamic-labs/sdk-react-core';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
+  const navigate = useNavigate();
   const {
     user,
     handleLogOut,
@@ -13,6 +15,11 @@ export default function Profile() {
   if (userWallets.length === 0) {
     return <div>No connected wallets.</div>;
   }
+
+  const logOutAndRedirect = async () => {
+    await handleLogOut();
+    navigate('/');
+  };
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -54,7 +61,7 @@ export default function Profile() {
         ))}
       </div> */}
 
-      <button type="button" className='mt-[5rem] bg-white text-black p-3 rounded-lg font-semibold' onClick={handleLogOut}>
+      <button type="button" className='mt-[5rem] bg-white text-black p-3 rounded-lg font-semibold' onClick={logOutAndRedirect}>
         Log Out
       </button>
     </main>

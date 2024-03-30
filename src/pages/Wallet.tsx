@@ -19,7 +19,7 @@ export default function WalletPage() {
   }, [primaryWallet]);
 
   return (
-    <div className="flex h-full flex-col py-6 items-center">
+    <div className="flex pb-[4rem] h-screen w-screen bg-black text-white flex-col py-6 items-center">
       <div className="w-[65%] h-[60%] flex flex-col items-center justify-center rounded-lg">
         <div style={{ backgroundImage: 'url("card.svg")', backgroundSize: 'cover',
         backgroundPosition: 'center'}} className="w-full h-[90%] flex flex-col items-center justify-between rounded-lg p-3 px-4">
