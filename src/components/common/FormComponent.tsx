@@ -3,18 +3,12 @@ import classnames from '../../utils/utils';
 import uploadIcon from '../../assets/icons/uploadIcon.svg';
 import closeIcon from '../../assets/icons/closeIcon.svg';
 
-interface InputProps {
-  onChange: (e: any) => void;
-  classname?: string;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  name?: string;
-  value?: any;
-  placeholder?: string;
-  type?: string;
 }
 
 export const Input = ({
-  classname,
+  className,
   label,
   name,
   value,
@@ -23,7 +17,7 @@ export const Input = ({
   type = 'text',
 }: InputProps) => {
   return (
-    <div className={classnames('flex w-full flex-col gap-1', classname)}>
+    <div className={classnames('flex w-full flex-col gap-1', className)}>
       {label && (
         <small className='font-medium text-sm text-gray-400'>{label}</small>
       )}

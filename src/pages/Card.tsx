@@ -3,24 +3,18 @@ import { Link } from 'react-router-dom';
 import { Input } from '../components/common/FormComponent';
 import { IoIosArrowBack } from 'react-icons/io';
 
-interface MetaData {
-  [key: string]: any;
-}
-
 interface CardFormData {
   card_type: string;
   card_brand: string;
   card_currency: string;
   pin: string;
-  meta_data: MetaData;
 }
 
 const initialState: CardFormData = {
-  card_type: '',
-  card_brand: '',
-  card_currency: '',
+  card_type: 'Virtual',
+  card_brand: 'Mastercard',
+  card_currency: 'NGN',
   pin: '',
-  meta_data: {},
 };
 
 const Card = () => {
@@ -32,8 +26,6 @@ const Card = () => {
       [e.target.name]: e.target.value,
     });
   };
-
-  //   console.log(formData);
 
   return (
     <main className='between min-h-screen w-screen flex-col gap-3 overflow-y-scroll bg-black px-3 py-5 pb-[5rem] text-white'>
@@ -49,30 +41,30 @@ const Card = () => {
         </div>
         <div className='center w-full flex-col gap-3'>
           <Input
-            onChange={handleChange}
             value={formData.card_type}
             type='text'
             label='Card Type'
             placeholder='Virtual'
             name='card_type'
+            disabled
           />
 
           <Input
-            onChange={handleChange}
             value={formData.card_brand}
             type='text'
             label='Card Brand'
             placeholder='Mastercard'
             name='card_brand'
+            disabled
           />
 
           <Input
-            onChange={handleChange}
             value={formData.card_currency}
             type='text'
             label='Card Currency'
             placeholder='NGN'
             name='card_currency'
+            disabled
           />
 
           <Input
@@ -86,12 +78,12 @@ const Card = () => {
         </div>
       </div>
 
-      <Link
-        to='/wallet'
+      <button
+        type='button'
         className='center mt-[3rem] w-full rounded-lg bg-white p-3 font-semibold text-black'
       >
         Submit
-      </Link>
+      </button>
     </main>
   );
 };

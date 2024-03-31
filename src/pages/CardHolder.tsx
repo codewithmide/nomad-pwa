@@ -4,27 +4,24 @@ import { Link } from 'react-router-dom';
 import { Input, FileUpload } from '../components/common/FormComponent';
 
 const initialState = {
-  first_name: '',
-  last_name: '',
+  first_name: 'Foo',
+  last_name: 'Bar',
   address: {
-    address: '',
-    city: '',
-    state: '',
-    country: '',
-    postal_code: '',
-    house_no: '',
+    address: 'Maryland Mall, Maryland',
+    city: 'Ikeja',
+    state: 'Lagos',
+    country: 'Nigeria',
+    postal_code: '100211',
+    house_no: '01',
   },
-  phone: '',
-  email_address: '',
+  phone: '08012345678',
+  email_address: 'foo@example.com',
   identity: {
-    id_type: '',
-    id_no: '',
-    bvn: '',
-    id_image: '',
-    selfie_image: '',
-    country: '',
+    id_type: 'NIGERIA_NIN',
+    id_no: '01234567890',
+    bvn: '01234567890',
+    id_image: 'https://via.placeholder.com/150',
   },
-  meta_data: {},
 };
 
 interface Address {
@@ -41,8 +38,6 @@ interface Identity {
   id_no: string;
   bvn: string;
   id_image: string;
-  selfie_image: string;
-  country: 'IN' | string;
 }
 
 interface FormDataState {
@@ -52,7 +47,6 @@ interface FormDataState {
   phone: string;
   email_address: string;
   identity: Identity;
-  meta_data: Record<string, unknown>;
 }
 
 const CardHolder = () => {
@@ -74,8 +68,6 @@ const CardHolder = () => {
       },
     });
   };
-
-  console.log(formData);
 
   return (
     <main className='between between min-h-screen w-screen flex-col gap-3 overflow-y-scroll bg-black px-3 py-5 pb-[5rem] text-white'>
@@ -133,12 +125,12 @@ const CardHolder = () => {
       </div>
 
       <Input
-        onChange={handleChange}
         value={formData.address.country}
         type='text'
         label='Country'
         placeholder='Nigeria'
         name='country'
+        disabled
       />
 
       <div className='between gap-4'>
@@ -180,12 +172,12 @@ const CardHolder = () => {
       />
 
       <Input
-        onChange={handleChange}
         value={formData.identity.id_type}
         type='text'
         label='Identity type'
         placeholder='National ID card'
         name='id_type'
+        disabled
       />
 
       <Input
@@ -205,6 +197,7 @@ const CardHolder = () => {
         placeholder='12345678901'
         name='bvn'
       />
+
       <div className='flex w-full flex-col gap-2'>
         <p className='text-sm text-gray-400'>ID image</p>
         <FileUpload
@@ -212,30 +205,13 @@ const CardHolder = () => {
           handleFileChange={(file: File) => handleFileChange(file, 'id_image')}
         />
       </div>
-      <div className='flex w-full flex-col gap-2'>
-        <p className='text-sm text-gray-400'>Selfie image</p>
-        <FileUpload
-          image={formData.identity.selfie_image}
-          handleFileChange={(file: File) =>
-            handleFileChange(file, 'selfie_image')
-          }
-        />
-      </div>
-      <Input
-        onChange={handleChange}
-        value={formData.identity.country}
-        type='text'
-        label='Country'
-        placeholder='Nigeria'
-        name='country'
-      />
 
-      <Link
-        to='/cardHolder'
+      <button
+        type='button'
         className='center mt-[3rem] w-full rounded-lg bg-white p-3 font-semibold text-black'
       >
         Confirm
-      </Link>
+      </button>
     </main>
   );
 };
