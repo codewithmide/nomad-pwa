@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core';
 import { SolanaWalletConnectors } from '@dynamic-labs/solana';
+import { Toaster } from 'sonner';
 import RouteFile from './routes';
 import InstallPWA from './install';
 
@@ -24,6 +25,7 @@ function App() {
         walletConnectors: [SolanaWalletConnectors],
       }}
     >
+      <Toaster position='top-center' />
       {isMobile ? (
         <main className='quicksand'>
           <RouteFile />
