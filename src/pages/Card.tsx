@@ -27,16 +27,17 @@ const Card = () => {
   const [formData, setFormData] = useState<CardFormData>(initialState);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
   ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-  
 
-    console.log(formData);
+  console.log(formData);
 
   return (
     <main className='between min-h-screen w-screen flex-col gap-3 overflow-y-scroll bg-black px-3 py-5 pb-[5rem] text-white'>
@@ -59,20 +60,26 @@ const Card = () => {
             placeholder='Virtual'
             name='card_type'
           />
-          
 
           <div className='w-full'>
-            <label htmlFor="card_brand" className='block mb-2 font-medium text-sm text-gray-400'>Card Brand</label>
+            <label
+              htmlFor='card_brand'
+              className='mb-2 block font-medium text-sm text-gray-400'
+            >
+              Card Brand
+            </label>
             <select
-              id="card_brand"
-              name="card_brand"
+              id='card_brand'
+              name='card_brand'
               onChange={handleChange}
               value={formData.card_brand}
-              className="block w-full p-3 border border-gray-800 bg-black text-sm text-gray-200 rounded shadow-sm focus:outline-none focus:none focus:none"
+              className='focus:none focus:none block h-[3rem] w-full rounded border border-gray-800 bg-black p-3 text-sm text-gray-200 shadow-sm focus:outline-none'
             >
-              <option value="" disabled>Select your preferred card brand</option>
-              <option value="Mastercard">Mastercard</option>
-              <option value="Visa">Visa</option>
+              <option value='' disabled>
+                Select your preferred card brand
+              </option>
+              <option value='Mastercard'>Mastercard</option>
+              <option value='Visa'>Visa</option>
             </select>
           </div>
 

@@ -61,11 +61,15 @@ const CardHolder = () => {
 
   const [formData, setFormData] = useState<FormDataState>(initialState);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-  
-    if (name.startsWith("identity.")) {
-      const fieldName = name.split(".")[1];
+
+    if (name.startsWith('identity.')) {
+      const fieldName = name.split('.')[1];
       setFormData({
         ...formData,
         identity: {
@@ -80,7 +84,7 @@ const CardHolder = () => {
       });
     }
   };
-  
+
   const handleFileChange = async (file: File | null, fieldName: string) => {
     const imageUrl = await uploadImage(file);
     setFormData({
@@ -96,13 +100,16 @@ const CardHolder = () => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'l8ffugrf');
-  
+
     try {
-      const response = await fetch(`https://api.cloudinary.com/v1_1/dktuufqyv/image/upload`, {
-        method: 'POST',
-        body: formData,
-      });
-  
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dktuufqyv/image/upload`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
       const data = await response.json();
       return data.secure_url;
     } catch (error) {
@@ -110,7 +117,6 @@ const CardHolder = () => {
       return null;
     }
   };
-  
 
   console.log(formData);
 
@@ -149,7 +155,7 @@ const CardHolder = () => {
         placeholder='No. 123, Atiku street'
         name='address'
       />
-      <div className='between gap-4 w-full'>
+      <div className='between w-full gap-4'>
         <Input
           onChange={handleChange}
           value={formData.address.city}
@@ -178,7 +184,7 @@ const CardHolder = () => {
         name='country'
       />
 
-      <div className='between gap-4 w-full'>
+      <div className='between w-full gap-4'>
         <Input
           onChange={handleChange}
           value={formData.address.postal_code}
@@ -217,22 +223,34 @@ const CardHolder = () => {
       />
 
       <div className='w-full'>
-        <label htmlFor="identity.id_type" className='block mb-2 font-medium text-sm text-gray-400'>Identity type</label>
+        <label
+          htmlFor='identity.id_type'
+          className='mb-2 block font-medium text-sm text-gray-400'
+        >
+          Identity type
+        </label>
         <select
-  id="id_type"
-  name="identity.id_type"
-  onChange={handleChange}
-  value={formData.identity.id_type}
-  className="block w-full p-3 border border-gray-800 bg-black text-sm text-gray-200 rounded shadow-sm focus:outline-none focus:none focus:none"
->
-  <option value="" disabled>Select identity type</option>
-  <option value="NIGERIAN_BVN_VERIFICATION">NIGERIAN BVN VERIFICATION</option>
-  <option value="NIGERIAN_NIN">NIGERIAN NIN</option>
-  <option value="NIGERIAN_INTERNATIONAL_PASSPORT">NIGERIAN INTERNATIONAL PASSPORT</option>
-  <option value="NIGERIAN_PVC">NIGERIAN PVC</option>
-  <option value="NIGERIAN_DRIVERS_LICENSE">NIGERIAN DRIVERS LICENSE</option>
-</select>
-
+          id='id_type'
+          name='identity.id_type'
+          onChange={handleChange}
+          value={formData.identity.id_type}
+          className='focus:none focus:none block w-full h-[3rem] rounded border border-gray-800 bg-black p-3 text-sm text-gray-200 shadow-sm focus:outline-none'
+        >
+          <option value='' disabled>
+            Select identity type
+          </option>
+          <option value='NIGERIAN_BVN_VERIFICATION'>
+            NIGERIAN BVN VERIFICATION
+          </option>
+          <option value='NIGERIAN_NIN'>NIGERIAN NIN</option>
+          <option value='NIGERIAN_INTERNATIONAL_PASSPORT'>
+            NIGERIAN INTERNATIONAL PASSPORT
+          </option>
+          <option value='NIGERIAN_PVC'>NIGERIAN PVC</option>
+          <option value='NIGERIAN_DRIVERS_LICENSE'>
+            NIGERIAN DRIVERS LICENSE
+          </option>
+        </select>
       </div>
 
       <Input

@@ -96,7 +96,7 @@ export default function Home() {
   }, [primaryWallet]);
 
   return (
-    <main className='flex h-screen w-screen flex-col !overflow-hidden bg-black p-5 pb-[4rem] text-white'>
+    <main className='flex min-h-screen w-screen flex-col !overflow-hidden bg-black p-5  pb-[5rem] text-white'>
       <div className='between flex w-full items-start'>
         <Logo />
 
@@ -138,13 +138,13 @@ export default function Home() {
         </div>
 
         <div className='center w-full gap-4 overflow-x-scroll'>
-          <div className='center mr-10 flex-col gap-2'>
+          {/* <div className='center mr-10 flex-col gap-2'>
             <img
               src='../assets/images/spotify.png'
               className='center h-14 w-14 rounded-full border border-white p-1'
             />
             <p></p>
-          </div>
+          </div> */}
           <div className='center w-full gap-4 overflow-x-scroll'>
             {tokens.map((token, index) => (
               <div key={index} className='center mr-10 flex-col gap-2'>
