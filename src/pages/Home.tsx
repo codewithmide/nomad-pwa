@@ -1,10 +1,10 @@
-import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
-import Logo from "../components/common/Logo";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import Logo from '../components/common/Logo';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // import { brandLogos } from "../utils/brands";
-import { Connection, PublicKey } from "@solana/web3.js";
-import { IoMdNotificationsOutline } from "react-icons/io";
+import { Connection, PublicKey } from '@solana/web3.js';
+import { IoMdNotificationsOutline } from 'react-icons/io';
 
 interface TokenDetail {
   mint: string;
@@ -14,12 +14,11 @@ interface TokenDetail {
 export default function Home() {
   const { user, primaryWallet } = useDynamicContext();
 
-  const [balance, setBalance] = useState("");
+  const [balance, setBalance] = useState('');
   const [tokens, setTokens] = useState<TokenDetail[]>([]);
 
-
   const rpcUrl =
-    "https://devnet.helius-rpc.com/?api-key=87a8dfd7-7df8-4361-a406-40cb5201f179";
+    'https://devnet.helius-rpc.com/?api-key=87a8dfd7-7df8-4361-a406-40cb5201f179';
   const connection = new Connection(rpcUrl);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ export default function Home() {
           new PublicKey(primaryWallet.address),
           {
             programId: new PublicKey(
-              "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+              'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'
             ),
           }
         );
@@ -62,7 +61,7 @@ export default function Home() {
 
         setTokens(tokenDetails);
       } catch (error) {
-        console.error("Error fetching tokens:", error);
+        console.error('Error fetching tokens:', error);
       }
     };
 
@@ -97,62 +96,62 @@ export default function Home() {
   }, [primaryWallet]);
 
   return (
-    <main className="h-screen pb-[4rem] w-screen !overflow-hidden flex-col flex bg-black p-5 text-white">
-      <div className="w-full flex between items-start">
+    <main className='flex h-screen w-screen flex-col !overflow-hidden bg-black p-5 pb-[4rem] text-white'>
+      <div className='between flex w-full items-start'>
         <Logo />
 
-        <Link to="/notifications">
-          <IoMdNotificationsOutline size={20} color="#fff" />
+        <Link to='/notifications'>
+          <IoMdNotificationsOutline size={20} color='#fff' />
         </Link>
       </div>
-      <div className="flex-col flex w-full items-start my-16">
+      <div className='my-16 flex w-full flex-col items-start'>
         <p>
-          Hi,{" "}
+          Hi,{' '}
           <span>
             {user?.firstName} {user?.lastName}
           </span>
         </p>
-        <h1 className="font-medium text-3xl">Welcome back</h1>
+        <h1 className='font-medium text-3xl'>Welcome back</h1>
       </div>
 
-      <div className="flex-col flex w-full font-regular items-start">
+      <div className='flex w-full flex-col items-start font-regular'>
         <p>Account balance</p>
-        <h2 className="font-bold text-4xl">${balance}.00</h2>
+        <h2 className='font-bold text-4xl'>${balance}.00</h2>
       </div>
 
       {/* <button className='mt-[3rem] bg-white text-black p-3 rounded-lg font-semibold' onClick={() => signMessage(primaryWallet)}>Sign Message</button> */}
-      <div className="w-full flex-col gap-10 between mt-[1rem]">
-        <div className="center w-full gap-6">
+      <div className='between mt-[1rem] w-full flex-col gap-10'>
+        <div className='center w-full gap-6'>
           <Link
-            to="/send"
-            className="w-full center gap-2 text-center bg-[#06FFC3] text-black p-3 font-medium"
+            to='/send'
+            className='center w-full gap-2 bg-[#06FFC3] p-3 text-center font-medium text-black'
           >
             <p>Send</p>
             {/* <IoIosSend size={20} /> */}
           </Link>
           <Link
-            to="/receive"
-            className="w-full text-center bg-white text-black p-3 font-medium"
+            to='/receive'
+            className='w-full bg-white p-3 text-center font-medium text-black'
           >
             Recieve
           </Link>
         </div>
 
-        <div className="center w-full overflow-x-scroll gap-4">
-          <div className="center flex-col gap-2 mr-10">
+        <div className='center w-full gap-4 overflow-x-scroll'>
+          <div className='center mr-10 flex-col gap-2'>
             <img
-              src="../assets/images/spotify.png"
-              className="border border-white p-1 rounded-full w-14 h-14 center"
+              src='../assets/images/spotify.png'
+              className='center h-14 w-14 rounded-full border border-white p-1'
             />
             <p></p>
           </div>
-          <div className="center w-full overflow-x-scroll gap-4">
+          <div className='center w-full gap-4 overflow-x-scroll'>
             {tokens.map((token, index) => (
-              <div key={index} className="center flex-col gap-2 mr-10">
+              <div key={index} className='center mr-10 flex-col gap-2'>
                 {/* Here you can use the mint or another identifier to fetch and display the token image */}
                 <img
                   src={`../assets/images/token-placeholder.png`} // Replace this with actual token image path
-                  className="border border-white p-1 rounded-full w-14 h-14 center"
+                  className='center h-14 w-14 rounded-full border border-white p-1'
                 />
                 <p>{token.balance}</p> {/* Display token balance */}
               </div>
@@ -172,17 +171,17 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="center w-full flex-col mt-[6rem]">
-        <div className="between w-full">
-          <h3 className="font-regular">Recent tranasctions</h3>
+      <div className='center mt-[6rem] w-full flex-col'>
+        <div className='between w-full'>
+          <h3 className='font-regular'>Recent tranasctions</h3>
           <Link
-            to="/transactions"
-            className="text-gray-400 font-regular text-sm"
+            to='/transactions'
+            className='font-regular text-sm text-gray-400'
           >
             show all
           </Link>
         </div>
-        <div className="text-[.7rem] w-full text-left font-regular mt-4">
+        <div className='mt-4 w-full text-left font-regular text-[.7rem]'>
           You currently have no tranasction
         </div>
       </div>

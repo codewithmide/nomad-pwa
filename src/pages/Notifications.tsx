@@ -1,18 +1,18 @@
-import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { IoIosArrowBack } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const Notifications = () => {
   return (
-    <main className="p-5 bg-black text-white w-screen h-screen overflow-hidden">
-      <div className="w-full between border-b pb-3 border-gray-700">
-        <Link to="/" className="center gap-2">
-          <IoIosArrowBack color="#fff" size={15} />
-          <p className="text-sm font-light">Back</p>
+    <main className='h-screen w-screen overflow-hidden bg-black p-5 text-white'>
+      <div className='between w-full border-b border-gray-700 pb-3'>
+        <Link to='/' className='center gap-2'>
+          <IoIosArrowBack color='#fff' size={15} />
+          <p className='font-light text-sm'>Back</p>
         </Link>
       </div>
-      <p className="text-2xl mt-10">Notifications</p>
-      <div className="overflow-y-auto">
-        <p className="text-[.7rem] w-full text-left font-regular mt-4">
+      <p className='mt-10 text-2xl'>Notifications</p>
+      <div className='overflow-y-auto'>
+        <p className='mt-4 w-full text-left font-regular text-[.7rem]'>
           You currently have no notificaation
         </p>
       </div>

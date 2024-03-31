@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
@@ -11,10 +8,9 @@ export default {
         bold: ['Bold'],
         regular: ['Regular'],
         medium: ['Medium'],
-        light: ['Light']
-      }
+        light: ['Light'],
+      },
     },
   },
   plugins: [],
-}
-
+};

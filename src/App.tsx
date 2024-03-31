@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import {
-  DynamicContextProvider
-} from "@dynamic-labs/sdk-react-core";
-import { SolanaWalletConnectors } from "@dynamic-labs/solana";
-import RouteFile from "./routes";
-import InstallPWA from "./install";
+import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core';
+import { SolanaWalletConnectors } from '@dynamic-labs/solana';
+import RouteFile from './routes';
+import InstallPWA from './install';
 
 function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -27,12 +25,12 @@ function App() {
       }}
     >
       {isMobile ? (
-        <main className="quicksand">
+        <main className='quicksand'>
           <RouteFile />
           <InstallPWA />
         </main>
       ) : (
-        <div className="quicksand w-screen h-screen text-black font-bold text-3xl center">
+        <div className='quicksand center h-screen w-screen font-bold text-3xl text-black'>
           Nomad is only available on mobile devices.
         </div>
       )}

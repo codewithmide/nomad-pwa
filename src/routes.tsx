@@ -15,17 +15,17 @@ function RouteFile() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/send" element={<Send />} />
-        <Route path="/receive" element={<Receive />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/transactions" element={<Tranasctions />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/wallet" element={<WalletPage />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cardHolder" element={<CardHolder />} />
-        <Route path="/card" element={<Card />} />
+        <Route path='/' element={<Login />} />
+        <Route path='/send' element={<Send />} />
+        <Route path='/receive' element={<Receive />} />
+        <Route path='/notifications' element={<Notifications />} />
+        <Route path='/transactions' element={<Tranasctions />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/wallet' element={<WalletPage />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/cardHolder' element={<CardHolder />} />
+        <Route path='/card' element={<Card />} />
       </Routes>
       <Navigation />
     </Router>

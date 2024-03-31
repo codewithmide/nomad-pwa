@@ -6,13 +6,16 @@ const InstallPWA: React.FC = () => {
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
-      setInstallPrompt(e); 
+      setInstallPrompt(e);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener(
+        'beforeinstallprompt',
+        handleBeforeInstallPrompt
+      );
     };
   }, []);
 
@@ -32,7 +35,11 @@ const InstallPWA: React.FC = () => {
 
   return (
     installPrompt && (
-      <button onClick={handleInstallClick} id="installButton" className='mt-[5rem] bg-white absolute bottom-10 right-10 px-6 text-black p-3 rounded-lg font-semibold'>
+      <button
+        onClick={handleInstallClick}
+        id='installButton'
+        className='absolute bottom-10 right-10 mt-[5rem] rounded-lg bg-white p-3 px-6 font-semibold text-black'
+      >
         Install
       </button>
     )

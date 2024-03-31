@@ -1,16 +1,16 @@
-import React from "react";
-import { RiFileCopyLine, RiCheckLine } from "react-icons/ri";
-import { FaPaste } from "react-icons/fa";
+import React from 'react';
+import { RiFileCopyLine, RiCheckLine } from 'react-icons/ri';
+import { FaPaste } from 'react-icons/fa';
 
 export const copyText = (text: string, cb?: () => void) => {
   if (navigator.clipboard && navigator.permissions) {
     navigator.clipboard.writeText(text).then(cb);
-  } else if (document.queryCommandSupported("copy")) {
-    const ele = document.createElement("textarea");
+  } else if (document.queryCommandSupported('copy')) {
+    const ele = document.createElement('textarea');
     ele.value = text;
     document.body.appendChild(ele);
     ele.select();
-    document.execCommand("copy");
+    document.execCommand('copy');
     document.body.removeChild(ele);
     cb?.();
   }
@@ -40,7 +40,7 @@ export function CopyToClipboard({
   };
 
   return (
-    <button className="text-xl" onClick={handleCopyClick}>
+    <button className='text-xl' onClick={handleCopyClick}>
       {copied ? (
         <RiCheckLine className={className} />
       ) : (
@@ -73,15 +73,15 @@ export function PasteFromClipboard({ targetId, onPaste }: Props) {
 
         onPaste && onPaste(clipboardData); // Invoke the onPaste callback
       } else {
-        console.error("Target element not found or not an input field.");
+        console.error('Target element not found or not an input field.');
       }
     } catch (error) {
-      console.error("Failed to read clipboard data: ", error);
+      console.error('Failed to read clipboard data: ', error);
     }
   };
 
   return (
-    <button type="button" className="text-xl" onClick={handlePasteClick}>
+    <button type='button' className='text-xl' onClick={handlePasteClick}>
       {pasted ? <RiCheckLine /> : <FaPaste />}
     </button>
   );

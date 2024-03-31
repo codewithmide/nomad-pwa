@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { IoIosArrowBack, IoIosSend, IoIosBackspace } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { IoIosArrowBack, IoIosSend, IoIosBackspace } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const Send = () => {
   const [displayAmount, setDisplayAmount] = useState('0.00');
@@ -9,7 +9,12 @@ const Send = () => {
   const updateAmount = (newAmount: React.SetStateAction<number>) => {
     if (Number(newAmount) <= 999999.99) {
       setNumericAmount(newAmount);
-      setDisplayAmount(newAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+      setDisplayAmount(
+        newAmount.toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })
+      );
     }
   };
 
@@ -30,35 +35,52 @@ const Send = () => {
   console.log(displayAmount);
 
   return (
-    <div className="bg-black flex-col pb-[4rem] between text-white h-screen w-screen between px-3 py-5">
-      <div className="w-full between border-b pb-3 border-gray-700">
-        <Link to="/" className="center gap-2">
-            <IoIosArrowBack color="#fff" size={15}/>
-            <p className='text-sm font-light'>Back</p>
+    <div className='between between h-screen w-screen flex-col bg-black px-3 py-5 pb-[4rem] text-white'>
+      <div className='between w-full border-b border-gray-700 pb-3'>
+        <Link to='/' className='center gap-2'>
+          <IoIosArrowBack color='#fff' size={15} />
+          <p className='font-light text-sm'>Back</p>
         </Link>
-        <div className="capitalize font-light text-sm text-center">Send Money</div>
+        <div className='text-center font-light text-sm capitalize'>
+          Send Money
+        </div>
       </div>
 
-      <div className="w-full h-full pb-6 center flex-col between">
+      <div className='center between h-full w-full flex-col pb-6'>
         <div></div>
-        <p className="text-4xl font-bold"><span className="text-3xl font-bold">$</span>{displayAmount}</p>
-        <Link to="/send" className='w-full center gap-2 text-center bg-white text-black p-5 rounded- font-medium'>
-          <p className="text-2xl">Send</p>
+        <p className='font-bold text-4xl'>
+          <span className='font-bold text-3xl'>$</span>
+          {displayAmount}
+        </p>
+        <Link
+          to='/send'
+          className='center rounded- w-full gap-2 bg-white p-5 text-center font-medium text-black'
+        >
+          <p className='text-2xl'>Send</p>
           <IoIosSend size={20} />
         </Link>
       </div>
 
       {/* Numbered keyboard here */}
-      <div className="grid grid-cols-3 gap-2  text-white font-medium w-full rounded-t-sm p-4 text-3xl">
-        {[...Array(9).keys()].map(n =>
-          <button key={n+1} onClick={() => handleNumberClick((n+1).toString())} className=" p-5 rounded-md">
+      <div className='grid w-full grid-cols-3  gap-2 rounded-t-sm p-4 font-medium text-3xl text-white'>
+        {[...Array(9).keys()].map((n) => (
+          <button
+            key={n + 1}
+            onClick={() => handleNumberClick((n + 1).toString())}
+            className=' rounded-md p-5'
+          >
             {n + 1}
           </button>
-        )}
+        ))}
         <button></button>
-        <button onClick={() => handleNumberClick('0')} className="p-3 rounded-md">0</button>
-        <button onClick={handleDelete} className=" center p-3 rounded-md">
-          <IoIosBackspace size={24}/>
+        <button
+          onClick={() => handleNumberClick('0')}
+          className='rounded-md p-3'
+        >
+          0
+        </button>
+        <button onClick={handleDelete} className=' center rounded-md p-3'>
+          <IoIosBackspace size={24} />
         </button>
       </div>
     </div>
