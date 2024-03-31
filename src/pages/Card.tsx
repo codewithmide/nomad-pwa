@@ -16,7 +16,7 @@ interface CardFormData {
 }
 
 const initialState: CardFormData = {
-  card_type: '',
+  card_type: 'Virtual',
   card_brand: '',
   card_currency: '',
   pin: '',
@@ -26,14 +26,17 @@ const initialState: CardFormData = {
 const Card = () => {
   const [formData, setFormData] = useState<CardFormData>(initialState);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
+  
 
-  //   console.log(formData);
+    console.log(formData);
 
   return (
     <main className='between min-h-screen w-screen flex-col gap-3 overflow-y-scroll bg-black px-3 py-5 pb-[5rem] text-white'>
@@ -56,15 +59,22 @@ const Card = () => {
             placeholder='Virtual'
             name='card_type'
           />
+          
 
-          <Input
-            onChange={handleChange}
-            value={formData.card_brand}
-            type='text'
-            label='Card Brand'
-            placeholder='Mastercard'
-            name='card_brand'
-          />
+          <div className='w-full'>
+            <label htmlFor="card_brand" className='block mb-2 font-medium text-sm text-gray-400'>Card Brand</label>
+            <select
+              id="card_brand"
+              name="card_brand"
+              onChange={handleChange}
+              value={formData.card_brand}
+              className="block w-full p-3 border border-gray-800 bg-black text-sm text-gray-200 rounded shadow-sm focus:outline-none focus:none focus:none"
+            >
+              <option value="" disabled>Select your preferred card brand</option>
+              <option value="Mastercard">Mastercard</option>
+              <option value="Visa">Visa</option>
+            </select>
+          </div>
 
           <Input
             onChange={handleChange}

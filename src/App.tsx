@@ -3,8 +3,12 @@ import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core';
 import { SolanaWalletConnectors } from '@dynamic-labs/solana';
 import RouteFile from './routes';
 import InstallPWA from './install';
+// import {Cloudinary} from "@cloudinary/url-gen";
+
 
 function App() {
+  
+  
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {

@@ -98,14 +98,14 @@ export default function Profile() {
 
       <button
         type='button'
-        className='mt-[5rem] rounded-lg bg-white p-3 font-semibold text-black'
+        className='mt-[5rem]  bg-white p-3 font-semibold text-black'
         onClick={logOutAndRedirect}
       >
         Log Out
       </button>
       <Link
         to='/cardHolder'
-        className='center mt-[1rem] rounded-lg bg-white p-3 font-semibold text-black'
+        className='center mt-[1rem]  bg-white p-3 font-semibold text-black'
       >
         Card holder
       </Link>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { Input, FileUpload } from '../components/common/FormComponent';
+// import { Cloudinary } from '@cloudinary/url-gen/index';
 
 const initialState = {
   first_name: '',
@@ -56,24 +57,60 @@ interface FormDataState {
 }
 
 const CardHolder = () => {
+  // const cld = new Cloudinary({cloud: {cloudName: 'dktuufqyv'}});
+
   const [formData, setFormData] = useState<FormDataState>(initialState);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+  
+    if (name.startsWith("identity.")) {
+      const fieldName = name.split(".")[1];
+      setFormData({
+        ...formData,
+        identity: {
+          ...formData.identity,
+          [fieldName]: value,
+        },
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
-
-  const handleFileChange = (file: File | null, fieldName: string) => {
+  
+  const handleFileChange = async (file: File | null, fieldName: string) => {
+    const imageUrl = await uploadImage(file);
     setFormData({
       ...formData,
       identity: {
         ...formData.identity,
-        [fieldName]: file ? URL.createObjectURL(file) : '',
+        [fieldName]: imageUrl, // Store the Cloudinary URL
       },
     });
   };
+
+  const uploadImage = async (file: any) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'l8ffugrf');
+  
+    try {
+      const response = await fetch(`https://api.cloudinary.com/v1_1/dktuufqyv/image/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+  
+      const data = await response.json();
+      return data.secure_url;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      return null;
+    }
+  };
+  
 
   console.log(formData);
 
@@ -112,7 +149,7 @@ const CardHolder = () => {
         placeholder='No. 123, Atiku street'
         name='address'
       />
-      <div className='between gap-4'>
+      <div className='between gap-4 w-full'>
         <Input
           onChange={handleChange}
           value={formData.address.city}
@@ -141,7 +178,7 @@ const CardHolder = () => {
         name='country'
       />
 
-      <div className='between gap-4'>
+      <div className='between gap-4 w-full'>
         <Input
           onChange={handleChange}
           value={formData.address.postal_code}
@@ -179,14 +216,24 @@ const CardHolder = () => {
         name='email_address'
       />
 
-      <Input
-        onChange={handleChange}
-        value={formData.identity.id_type}
-        type='text'
-        label='Identity type'
-        placeholder='National ID card'
-        name='id_type'
-      />
+      <div className='w-full'>
+        <label htmlFor="identity.id_type" className='block mb-2 font-medium text-sm text-gray-400'>Identity type</label>
+        <select
+  id="id_type"
+  name="identity.id_type"
+  onChange={handleChange}
+  value={formData.identity.id_type}
+  className="block w-full p-3 border border-gray-800 bg-black text-sm text-gray-200 rounded shadow-sm focus:outline-none focus:none focus:none"
+>
+  <option value="" disabled>Select identity type</option>
+  <option value="NIGERIAN_BVN_VERIFICATION">NIGERIAN BVN VERIFICATION</option>
+  <option value="NIGERIAN_NIN">NIGERIAN NIN</option>
+  <option value="NIGERIAN_INTERNATIONAL_PASSPORT">NIGERIAN INTERNATIONAL PASSPORT</option>
+  <option value="NIGERIAN_PVC">NIGERIAN PVC</option>
+  <option value="NIGERIAN_DRIVERS_LICENSE">NIGERIAN DRIVERS LICENSE</option>
+</select>
+
+      </div>
 
       <Input
         onChange={handleChange}
