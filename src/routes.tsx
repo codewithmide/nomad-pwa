@@ -8,7 +8,8 @@ import WalletPage from './pages/Wallet';
 import Profile from './pages/Profile';
 import Tranasctions from './pages/Transactions';
 import Navigation from './components/Navigation';
-
+import CardHolder from './pages/CardHolder';
+import Card from './pages/Card';
 
 function RouteFile() {
   return (
@@ -23,6 +24,8 @@ function RouteFile() {
         <Route path="/wallet" element={<WalletPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cardHolder" element={<CardHolder />} />
+        <Route path="/card" element={<Card />} />
       </Routes>
       <Navigation />
     </Router>

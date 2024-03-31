@@ -6,9 +6,9 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'prompt' as "prompt" | "autoUpdate",
   includeAssets: ['favicon.ico', "apple-touch-icon.png", "masked-icon.svg"],
   manifest: {
-    name: "React-vite-app",
-    short_name: "react-vite-app",
-    description: "I am a simple vite app",
+    name: "Nomad",
+    short_name: "nomad",
+    description: "Payments without banks",
     icons: [{
       src: '/android-chrome-192x192.png',
       sizes: '192x192',
@@ -33,12 +33,13 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
       type: 'image/png',
       purpose: 'any maskable',
     }],
-    theme_color: '#181818',
-    background_color: '#e0cc3b',
+    theme_color: '#ffffff',
+    background_color: '#000000',
     display: "standalone",
     scope: '/',
     start_url: "/",
-    orientation: 'portrait'
+    orientation: 'portrait',
+    prefer_related_applications: true
   },
 };
 

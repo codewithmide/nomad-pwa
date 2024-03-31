@@ -1,6 +1,7 @@
 import { useDynamicContext, useUserWallets } from '@dynamic-labs/sdk-react-core';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -64,6 +65,9 @@ export default function Profile() {
       <button type="button" className='mt-[5rem] bg-white text-black p-3 rounded-lg font-semibold' onClick={logOutAndRedirect}>
         Log Out
       </button>
+      <Link to="/cardHolder" className='center mt-[1rem] bg-white text-black p-3 rounded-lg font-semibold'>
+        Card holder
+      </Link>
     </main>
   );
 }
