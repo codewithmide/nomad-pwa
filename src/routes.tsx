@@ -10,6 +10,7 @@ import Tranasctions from './pages/Transactions';
 import Navigation from './components/Navigation';
 import CardHolder from './pages/CardHolder';
 import Card from './pages/Card';
+import CreateCard from './pages/CreateCard';
 
 function RouteFile() {
   return (
@@ -26,6 +27,7 @@ function RouteFile() {
         <Route path='/login' element={<Login />} />
         <Route path='/cardHolder' element={<CardHolder />} />
         <Route path='/card' element={<Card />} />
+        <Route path='/create-card' element={<CreateCard />} />
       </Routes>
       <Navigation />
     </Router>
