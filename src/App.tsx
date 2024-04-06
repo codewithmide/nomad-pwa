@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core';
 import { SolanaWalletConnectors } from '@dynamic-labs/solana';
 import { Toaster } from 'sonner';
@@ -7,6 +7,7 @@ import InstallPWA from './install';
 
 function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const isMobile = useMemo(() => windowWidth < 768, [windowWidth]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -16,7 +17,6 @@ function App() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  const isMobile = windowWidth < 768;
 
   return (
     <DynamicContextProvider

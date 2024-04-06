@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 import { Input, FileUpload } from '../components/common/FormComponent';
+import { handleNomadCardApiError } from '../helpers/axios';
+import useNomadCardApiClient from '../hooks/use-nomad-card-api-client';
+import useNomadCardUser from '../hooks/use-nomad-card-user';
 
 const initialState = {
   first_name: 'Foo',
@@ -50,7 +54,10 @@ interface FormDataState {
 }
 
 const CardHolder = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<FormDataState>(initialState);
+  const nomadCardApiClient = useNomadCardApiClient();
+  const nomadCardUser = useNomadCardUser();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -67,6 +74,22 @@ const CardHolder = () => {
         [fieldName]: file ? URL.createObjectURL(file) : '',
       },
     });
+  };
+
+  const handleSubmit = async () => {
+    if (nomadCardUser.data?.holderId || loading) return;
+    setLoading(true);
+    const toastId = toast.loading('Submitting...');
+
+    try {
+      await nomadCardApiClient.post('/cardholder', formData);
+      toast.success('Submitted successfully', { id: toastId });
+    } catch (error) {
+      const message = handleNomadCardApiError(error);
+      toast.error(message, { id: toastId });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -206,12 +229,16 @@ const CardHolder = () => {
         />
       </div>
 
-      <button
-        type='button'
-        className='center mt-[3rem] w-full rounded-lg bg-white p-3 font-semibold text-black'
-      >
-        Confirm
-      </button>
+      {!nomadCardUser.data?.holderId && (
+        <button
+          type='button'
+          className='center mt-[3rem] w-full rounded-lg bg-white p-3 font-semibold text-black'
+          onClick={handleSubmit}
+          disabled={loading}
+        >
+          {loading ? 'Loading...' : 'Submit'}
+        </button>
+      )}
     </main>
   );
 };

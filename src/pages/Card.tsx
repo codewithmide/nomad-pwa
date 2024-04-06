@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Input } from '../components/common/FormComponent';
 import { IoIosArrowBack } from 'react-icons/io';
+import { toast } from 'sonner';
+import { Input } from '../components/common/FormComponent';
+import { handleNomadCardApiError } from '../helpers/axios';
+import useNomadCardApiClient from '../hooks/use-nomad-card-api-client';
+import useNomadCardUser from '../hooks/use-nomad-card-user';
 
 interface CardFormData {
   card_type: string;
@@ -18,7 +22,10 @@ const initialState: CardFormData = {
 };
 
 const Card = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<CardFormData>(initialState);
+  const nomadCardApiClient = useNomadCardApiClient();
+  const nomadCardUser = useNomadCardUser();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -26,6 +33,40 @@ const Card = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleSubmit = async () => {
+    if (loading) return;
+    setLoading(true);
+    const toastId = toast.loading('Submitting...');
+
+    try {
+      await nomadCardApiClient.post('/card', formData);
+      toast.success('Card created successfully', { id: toastId });
+    } catch (error) {
+      const message = handleNomadCardApiError(error);
+      toast.error(message, { id: toastId });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (nomadCardUser.data?.cardId) {
+    return (
+      <main className='center min-h-screen w-screen flex-col gap-3'>
+        <div className='center flex-col gap-3'>
+          <p className='text-center font-light text-sm'>
+            You have already created a card
+          </p>
+          <Link
+            to='/wallet'
+            className='center w-full rounded-lg bg-white p-3 font-semibold text-black'
+          >
+            Go to wallet
+          </Link>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className='between min-h-screen w-screen flex-col gap-3 overflow-y-scroll bg-black px-3 py-5 pb-[5rem] text-white'>
@@ -81,8 +122,10 @@ const Card = () => {
       <button
         type='button'
         className='center mt-[3rem] w-full rounded-lg bg-white p-3 font-semibold text-black'
+        onClick={handleSubmit}
+        disabled={loading}
       >
-        Submit
+        {loading ? 'Loading...' : 'Submit'}
       </button>
     </main>
   );
